@@ -1,0 +1,66 @@
+<!-- <section class="mt-7">
+  <h1 class="text-2xl font-mono text-sky-300 text-center">Overview of customer transactions and their details</h1>
+<div class="flex w-3/4 mx-auto mt-5">
+  <div class=" w-1/2 p-2 bg-slate-50">
+    <p-chart type="line" [data]="chartData" [options]="chartOptions"></p-chart>
+  </div>
+  <div class="card">
+    <div
+        *ngFor="let item of transes ; let i =index "             
+    class="block max-w-sm p-6 my-3 cursor-pointer bg-sky-100  border border-sky-200 rounded-lg shadow"
+   
+  >
+   <h3 class="pb-4 pt-0">transction {{i+1}}</h3>
+    <div class="flex align-items-center">
+      <p class="text-sm">Amount:</p>
+      <div class="p-1 bg-sky-300 rounded-xl w-fit">
+        <h4 class="font-medium text-xs text-black">
+          {{ item.amount | currency }}
+        </h4>
+      </div>
+    </div>
+    <p>{{ item.date |date }}</p>
+  </div>
+</div>
+</div>
+
+  <div class="py-10 flex justify-around w-full rounded-lg bg-sky-600 bg-opacity-50 h-fit text-lg">
+    <p>TotalAmount: <span class="  font-bold">{{TotalAmount|currency}}</span></p>
+  
+    <p>Average: <span class="  font-bold">{{Avg|currency}}</span></p>
+  
+  </div>
+
+</section> -->
+
+
+
+<section class="mt-7">
+  <h1 class="text-3xl font-mono text-sky-600 text-center">Overview of customer transactions and their details</h1>
+  <div class="flex flex-col-reverse md:flex-row w-full md:w-3/4 mx-auto mt-5">
+    <div class="w-full md:w-1/2 p-2 bg-slate-50">
+      <p-chart type="line" [data]="chartData" [options]="chartOptions"></p-chart>
+    </div>
+    <div class="card w-full md:w-1/2">
+      <div
+        *ngFor="let item of transes; let i = index"
+        class="block max-w-sm p-6 my-3 mx-auto cursor-pointer bg-sky-100 border border-sky-200 rounded-lg shadow"
+      >
+        <h3 class="pb-4 pt-0">Transaction {{i + 1}}</h3>
+        <div class="flex items-center">
+          <p class="text-sm">Amount:</p>
+          <div class="p-1 bg-sky-300 rounded-xl w-fit">
+            <h4 class="font-medium text-xs text-black">
+              {{ item.amount | currency }}
+            </h4>
+          </div>
+        </div>
+        <p>{{ item.date | date }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="py-10 flex flex-col md:flex-row justify-around w-full rounded-lg bg-sky-600 bg-opacity-50 h-fit text-lg">
+    <p>Total Amount: <span class="font-bold">{{ TotalAmount | currency }}</span></p>
+    <p>Average: <span class="font-bold">{{ Avg | currency }}</span></p>
+  </div>
+</section>

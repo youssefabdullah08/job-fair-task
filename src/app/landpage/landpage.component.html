@@ -1,0 +1,91 @@
+
+
+
+
+
+ <div class="w-fit mx-auto">
+  <div class="flex flex-col md:flex-row justify-around items-center">
+    <div class="text-start text-3xl my-10 w-full md:w-4/12">
+      <h1 class="text-sky-700 font-bold font-mono">Customer Transactions</h1>
+    </div>
+    <div class="w-full md:w-4/12 my-7">
+      <label for="name" class="font-thin text-lg text-black">Name: </label>
+      <input class="input w-full" type="search" id="name" [(ngModel)]="value">
+    </div>
+    <div class="w-full md:w-4/12 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="flex flex-col md:flex-row items-center gap-2">
+        <label for="minAmount">From: </label>
+        <input id="minAmount" class="w-full" type="range" min="0" max="5000" [(ngModel)]="minAmount">
+        <span>{{ minAmount | currency }}</span>
+      </div>
+      <div class="flex flex-col md:flex-row items-center gap-2">
+        <label for="maxAmount">To: </label>
+        <input id="maxAmount" class="w-full" type="range" min="0" max="5000" [(ngModel)]="maxAmount">
+        <span>{{ maxAmount | currency }}</span>
+      </div>
+    </div>
+  </div>
+  <p-table [value]="customers | fillterbyname: value | amountRange: [minAmount, maxAmount]" *ngIf="customers.length!=0;else placeholder ">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="id">
+          <div class="flex items-center">
+            ID <p-sortIcon field="name" />
+          </div>
+        </th>
+        <th pSortableColumn="name">
+          <div class="flex items-center">
+            Name <p-sortIcon field="name" />
+          </div>
+        </th>
+        <th pSortableColumn="transaction">
+          <div class="flex items-center">
+            Transactions
+          </div>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-customer>
+      <tr class="border border-bottom">
+        <td>{{ customer.id }}</td>
+        <td class="cursor-pointer font-semibold text-black">
+          {{ customer.name }}
+        </td>
+        <td class="flex ">
+          <p-table class="flex hhhh overflow-x-hidden " [value]="customer.transactions.slice(0, 1) ">
+            <ng-template pTemplate="body" let-transaction >
+              <div class="flex w-fit">
+                <tr class="flex flex-col md:flex-row items-center w-fit">
+                  <div class="card mb-4 md:mb-0">
+                    <div class="flex items-center">
+                      <p class="text-sm">Amount:</p>
+                      <div class="p-1 bg-sky-600 bg-opacity-60 rounded-xl w-fit">
+                        <h4 class="font-medium text-xs text-black">
+                          {{ transaction.amount | currency }}
+                        </h4>
+                      </div>
+                    </div>
+                    <p>{{ transaction.date | date }}</p>
+                  </div>
+                  <div class="btn" [routerLink]="['/chart', customer.id]">
+                    <p>Show More <i class="fa-solid fa-arrow-right"></i></p>
+                  </div>
+                </tr>
+              </div>
+            </ng-template>
+          
+          </p-table>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<ng-template #placeholder>
+  <div class="w-full h-dvh bg-white flex justify-center items-center">
+    <div class="w-1/4">
+      <img src="../../assets/loading.gif" alt="loading" class="w-full " >
+
+    </div>
+  </div>
+</ng-template>

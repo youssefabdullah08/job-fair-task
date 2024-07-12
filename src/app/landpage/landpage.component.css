@@ -1,0 +1,15 @@
+.card {
+  @apply max-w-sm p-3 mx-3  bg-sky-100 hover:bg-sky-200 transition-all rounded-lg shadow;
+}
+.input {
+  @apply bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-10/12 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-slate-200;
+}
+.btn {
+  @apply p-2 cursor-pointer bg-slate-400 rounded-lg shadow-slate-400 shadow-md  text-white hover:bg-slate-300 transition-all;
+}
+
+@media only screen and (max-width: 736px){
+    .btn{
+        @apply p-0 bg-transparent text-black hover:bg-transparent shadow-none
+    }
+}

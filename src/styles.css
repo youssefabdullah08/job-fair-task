@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* #pn_id_7{
+    display:flex !important;
+} */
+
+.hhhh .p-element.p-datatable-tbody{
+    display:flex !important;
+    
+}
+
+
+

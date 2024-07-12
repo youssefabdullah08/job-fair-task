@@ -1,0 +1,7 @@
+.card{
+    scrollbar-width: thin;
+    scrollbar-color: #42A5F5 #ffffff;
+    @apply  bg-sky-200 text-black lg:w-1/4 rounded-xl h-[500px] overflow-scroll mx-auto overflow-x-hidden p-3
+    
+      
+}
