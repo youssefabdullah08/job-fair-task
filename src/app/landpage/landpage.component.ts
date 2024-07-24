@@ -33,6 +33,7 @@ export class LandpageComponent implements OnInit {
   value!: string;
   minAmount: number = 0;
   maxAmount: number = 2000;
+
   ngOnInit(): void {
     this.fetchData();
   }
@@ -47,6 +48,7 @@ export class LandpageComponent implements OnInit {
       });
     });
   }
+  
 
   aggregateData(): void {
     this.customers = this.customers.map((customer) => ({
@@ -54,6 +56,7 @@ export class LandpageComponent implements OnInit {
       transactions: this.transactions.filter(
         (transaction: any) => transaction.customer_id == customer.id
       ),
+
     }));
   }
 }

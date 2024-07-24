@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChartModule } from 'primeng/chart';
 import { GetDataService } from '../get-data.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-chart',
   standalone: true,
-  imports: [CommonModule, ChartModule],
+  imports: [CommonModule, ChartModule,RouterLink],
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css'],
 })
@@ -15,6 +15,7 @@ export class ChartComponent {
   chartOptions: any;
   customerId: any;
   customerData:any
+  CustmorName:string=''
   transes!: any[];
 TotalAmount!:number
 Avg:number=0
@@ -29,6 +30,7 @@ Avg:number=0
       this.fetchData();
     });
     this.initializeChartOptions();
+    this.getCustmorname()
   }
 
   fetchData(): void {
@@ -53,7 +55,14 @@ Avg:number=0
       },
     });
   }
-
+  getCustmorname():void{
+this._GetDataService.getCustomers(`?id=${this.customerId}`).subscribe({
+  next:(res)=>{
+    console.log(res);
+    this.CustmorName=res[0].name
+  }
+})
+  }
 
   prepareChartData(transactions: any[]): void {
     const labels = transactions.map((transaction) => transaction.date);
